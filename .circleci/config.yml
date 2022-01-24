@@ -1,0 +1,33 @@
+version: "2.1"
+jobs:
+  simple:
+    docker:
+      - image: ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/circleci-stateless-ssm-parameter:latest
+        aws_auth:
+          aws_access_key_id: $AWS_ACCESS_KEY_ID
+          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
+    steps:
+      - checkout
+      - run:
+          working_directory: ./examples/simple
+          name: terragrunt apply
+          command: |
+            terragrunt init --terragrunt-non-interactive
+            terragrunt apply -auto-approve --terragrunt-non-interactive 2>&1 | tee /tmp/apply.log
+      - run:
+          name: terragrunt state pull
+          working_directory: ./examples/simple
+          command: |
+            terragrunt state pull --terragrunt-non-interactive > /tmp/terraform.tfstate
+      - run:
+          name: Test
+          command: |
+            cat /tmp/terraform.tfstate | grep -q stateless-ssm-parameters-demo-aws-access-key-id
+            cat /tmp/apply.log | grep -q stateless-ssm-parameters-demo-aws-access-key-id
+            cat /tmp/terraform.tfstate > /tmp/combined.txt
+            cat /tmp/apply.log >> /tmp/combined.txt
+            cat /tmp/combined.txt | grep -qv AKIAIOSFODNN7EXAMPLE
+workflows:
+  simple:
+    jobs:
+      - simple
