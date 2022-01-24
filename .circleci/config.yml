@@ -2,10 +2,7 @@ version: "2.1"
 jobs:
   simple:
     docker:
-      - image: ${AWS_ACCOUNT_ID}.dkr.ecr.us-east-1.amazonaws.com/circleci-stateless-ssm-parameter:latest
-        aws_auth:
-          aws_access_key_id: $AWS_ACCESS_KEY_ID
-          aws_secret_access_key: $AWS_SECRET_ACCESS_KEY
+      - image: ${EXECUTOR_URI}:latest
     steps:
       - checkout
       - run:
