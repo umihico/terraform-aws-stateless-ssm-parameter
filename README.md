@@ -10,12 +10,12 @@ module "ssm_parameters" {
   parameters = [
     {
       name            = "stateless-ssm-parameters-demo-aws-access-key-id"
-      encrypted_value = "AQICAHhagoO2WfJ8W544wyeIhy6uH5BVh+foRUiIL+aHTBasWAEerJxJ916nQiZZ/iyG1R/QAAAAcjBwBgkqhkiG9w0BBwagYzBhAgEAMFwGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMwkGbReMOfMz1hskbAgEQgC/06wdTixGxA1JXjv5P2Wsc3cWQDrga6Fr812KWShIrzkqkQuu1Eh9wQu+/SaYkOQ=="
+      encrypted_value = "AQICAHhknPcMN2mPQjlgkKH9EhrUk79o+4j1nUtJMmNPXkAKWgHMyR2vUsqH8wKITgQmgvysAAAAcjBwBgkqhkiG9w0BBwagYzBhAgEAMFwGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMGIi7bRe0nfMJk4LHAgEQgC+8pD0sNt3aXQ97B7mAenZLWSTa9xrUYxEObS0c6M5PcJsUY96yPqpWR8d11rkk1w=="
       # plain text is AKIAIOSFODNN7EXAMPLE
     },
     {
       name            = "stateless-ssm-parameters-demo-aws-access-secret-key"
-      encrypted_value = "AQICAHhagoO2WfJ8W544wyeIhy6uH5BVh+foRUiIL+aHTBasWAErLRzCt7+7fB70huDHz2dXAAAAhzCBhAYJKoZIhvcNAQcGoHcwdQIBADBwBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDOCJ2grtpOxNiQ8lhwIBEIBDhm+XF+Ij/b7mgpjnHB0ERjc7J7bXQLXfuZ/JB94sy45aKpAcihP8aK7jBa2nsifO9pVd9j7L/N4f9WxdXKGp9r75yw=="
+      encrypted_value = "AQICAHhknPcMN2mPQjlgkKH9EhrUk79o+4j1nUtJMmNPXkAKWgFJO3StxQSrfvTKupiSxQ9fAAAAhzCBhAYJKoZIhvcNAQcGoHcwdQIBADBwBgkqhkiG9w0BBwEwHgYJYIZIAWUDBAEuMBEEDA+oQzzMdeJwKG35QwIBEIBD14aLRt9gKfEBZjiCL1/QfbmhPqknTM3lo7MCoj7vKHWxqir4x0Gafylx/piwspv40i+3523obtUfWiN0dxhJXdsG5g=="
       # plain text is wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     },
   ]
