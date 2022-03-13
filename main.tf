@@ -20,7 +20,7 @@ resource "null_resource" "executor" {
   triggers = {
     value   = md5(local_file.temp[each.key].content)
     region  = local.region
-    profile = coalesce(var.profile, var.STATELESS_SSM_PROFILE)
+    profile = var.STATELESS_SSM_PROFILE == "" ? var.profile : var.STATELESS_SSM_PROFILE
     # https://github.com/hashicorp/terraform/issues/23679
   }
 
@@ -32,7 +32,7 @@ resource "null_resource" "executor" {
       "--output text",
       "--query Plaintext",
       "--region ${self.triggers.region}",
-      "--profile ${self.triggers.profile}",
+      self.triggers.profile != "" ? "--profile ${self.triggers.profile}" : "",
       "| base64 --decode)",
       "&&",
       "aws ssm put-parameter",
@@ -41,7 +41,7 @@ resource "null_resource" "executor" {
       "--overwrite",
       "--value \"$SECRET\"",
       "--region ${self.triggers.region}",
-      "--profile ${self.triggers.profile}",
+      self.triggers.profile != "" ? "--profile ${self.triggers.profile}" : "",
       ";",
       "rm ${path.module}/${each.key}.encrypted.txt",
       "# ${var.exec_log_suppresser}",

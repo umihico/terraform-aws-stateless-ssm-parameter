@@ -12,13 +12,13 @@ variable "region" {
 
 variable "profile" {
   description = "You can specify a profile or 'default' will be used regardless of terraform's current profile."
-  default     = null
+  default     = ""
   type        = string
 }
 
 variable "STATELESS_SSM_PROFILE" {
   description = "You can set your personal profile by doing 'TF_VAR_STATELESS_SSM_PROFILE=profile2 terraform apply'. This will overwrite var.profile."
-  default     = "default"
+  default     = ""
   type        = string
 }
 
